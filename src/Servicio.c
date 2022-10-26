@@ -28,20 +28,20 @@ void mostrarServicio(eServicio unServicio)
 		   unServicio.precio);
 }
 
-int mostrarServicios(eServicio lavados[], int tamServicio)
+int mostrarServicios(eServicio servicios[], int tamServicio)
 {
 
     int todoOk = 0;
 
-	if(lavados != NULL && tamServicio > 0)
+	if(servicios != NULL && tamServicio > 0)
 	{
-		printf("\n      *** Servicios ***\n");
+		printf("\n         *** Servicios ***\n");
 		printf("------------------------------------\n");
 		printf(" Id        Descripcion     Precio\n");
 		printf("------------------------------------\n");
 		for(int i = 0; i < tamServicio; i++)
 		{
-			mostrarServicio(lavados[i]);
+			mostrarServicio(servicios[i]);
 		}
 		printf("\n");
 		todoOk = 1;

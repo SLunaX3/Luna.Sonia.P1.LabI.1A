@@ -69,9 +69,8 @@ int altaBici(eBici vec[], int tam, eTipo tipo[], eMarca marca[], eColor color[],
 
     if( vec != NULL && pNextBici != NULL && tam > 0 && tipo != NULL && marca != NULL && tamTipo > 0 && tamMarca > 0 && color != NULL && tamColor > 0 && lavados != NULL && tamServicio > 0)
     {
-        system("cls");
-        printf("\n             *** Alta Bici ***             \n");
-        printf("---------------------------------------------\n\n");
+        printf("\n-------------- Alta Bici ---------------\n");
+        printf("----------------------------------------\n");
         buscarFree(vec, tam, &indice);
 
         if(indice == -1) //si no hay lugar
@@ -89,7 +88,7 @@ int altaBici(eBici vec[], int tam, eTipo tipo[], eMarca marca[], eColor color[],
             scanf("%d", &nuevaBici.idTipo);
             while(nuevaBici.idTipo<1000||nuevaBici.idTipo>1004)
             {
-                printf("ERROR. Ingrese un tipo que este listado.\n");
+                printf("ERROR. Ingrese un tipo que este listado: ");
                 fflush(stdin);
                 scanf("%d", &nuevaBici.idTipo);
             }
@@ -98,12 +97,12 @@ int altaBici(eBici vec[], int tam, eTipo tipo[], eMarca marca[], eColor color[],
 
 
             listarMarcas(marca, tamMarca);
-            printf("Ingrese Id de la Marca del auto: ");
+            printf("Ingrese Id de la Marca de la bici: ");
             fflush(stdin);
             scanf("%d", &nuevaBici.idMarca);
             while(nuevaBici.idMarca<1000||nuevaBici.idMarca>1004)
             {
-                printf("ERROR. Ingrese una marca que este listada.\n");
+                printf("ERROR. Ingrese una marca que este listada: ");
                 fflush(stdin);
                 scanf("%d", &nuevaBici.idMarca);
             }
@@ -111,12 +110,12 @@ int altaBici(eBici vec[], int tam, eTipo tipo[], eMarca marca[], eColor color[],
 
 
             mostrarColores(color, tamColor);
-            printf("Ingrese Id del Color del auto: ");
+            printf("Ingrese Id del Color de la bici: ");
             fflush(stdin);
             scanf("%d", &nuevaBici.idColor);
             while(nuevaBici.idColor<5000||nuevaBici.idColor>5004)
             {
-                printf("ERROR. Ingrese un color que este listado\n");
+                printf("ERROR. Ingrese un color que este listado:");
                 fflush(stdin);
                 scanf("%d", &nuevaBici.idColor);
             }
@@ -127,9 +126,9 @@ int altaBici(eBici vec[], int tam, eTipo tipo[], eMarca marca[], eColor color[],
             fflush(stdin);
             scanf("%c", &nuevaBici.material);
             nuevaBici.material = tolower(nuevaBici.material);
-            while(nuevaBici.material!='c' && nuevaBici.material!='a')
+            if(nuevaBici.material!='c' && nuevaBici.material!='a')
             {
-                printf("ERROR. Ingrese tipo de material válida ('c' carbono, 'a' aluminio): ");
+                printf("ERROR. Ingrese tipo de material válido ('c' carbono, 'a' aluminio): ");
                 fflush(stdin);
                 scanf("%c", &nuevaBici.material);
             }
@@ -162,7 +161,8 @@ int mostrarBici(eBici unaBici, eMarca marcas[], eColor colores[], int tamColor,i
     {
     	cargarTipo(tipos, tamTipos, unaBici.idTipo, elTipo);
 		cargarMarca(marcas, tamMarca, unaBici.idMarca, laMarca);
-		cargarColor(colores, tamColor, unaBici.idColor, elColor);
+		cargarNombreColor(colores, tamColor, unaBici.idColor, elColor);
+
 
 		if(unaBici.material =='a')
 		{
@@ -173,7 +173,7 @@ int mostrarBici(eBici unaBici, eMarca marcas[], eColor colores[], int tamColor,i
 			strcpy(material, carbono);
 		}
 
-		printf(" %d   %10s   %10s   %8s   %12s   \n",
+		printf(" %d   %10s   %6s   %8s   %12s \n",
 			   unaBici.id,
 			   elTipo,
 			   laMarca,
@@ -191,14 +191,13 @@ int listarBicis(eBici vec[], int tam, eMarca marca[], eColor color[], int tamMar
     int flag = 1;
     if( vec != NULL && tam > 0)
     {
-        system("cls");
         printf("\n                  *** Listado de Bicis ***\n");
         printf("--------------------------------------------------------------\n");
-        printf(" Id         Tipo       Marca       Color     Tipo de Material \n");
-        printf("---------------------------------------------------------------\n");
+        printf(" Id         Tipo       Marca     Color    Tipo de Material \n");
+        printf("--------------------------------------------------------------\n");
         for(int i=0; i < tam; i++)
         {
-            if( !vec[i].isEmpty)
+            if( vec[i].isEmpty==0) // si algo rompe, ver esto
             {
                 mostrarBici(vec[i], marca, color, tamColores, tamMarca, tipos, tamTipos);
                 flag = 0;
@@ -215,24 +214,24 @@ int listarBicis(eBici vec[], int tam, eMarca marca[], eColor color[], int tamMar
 
 
 
-int hardcodearBicis(eBici vec[], int tam, int* pNextId)
+int hardcodearBicis(eBici vec[], int tam, int* pNextId, int cant)
 {
     int todoOk = 0;
     eBici bici[] =
     {
-        {0, 1004, 1000, 5000, 'c', 0},
-        {0, 1003, 1001, 5001, 'a', 0},
+        {0, 1004, 1000, 5004, 'c', 0},
+        {0, 1003, 1001, 5004, 'a', 0},
         {0, 1002, 1002, 5002, 'c', 0},
         {0, 1001, 1003, 5003, 'a', 0},
-        {0, 1000, 1004, 5004, 'c', 0},
+        {0, 1000, 1000, 5004, 'c', 0},
         {0, 1001, 1003, 5001, 'a', 0},
-        {0, 1002, 1002, 5002, 'c', 0},
+        {0, 1002, 1002, 5003, 'c', 0},
         {0, 1003, 1001, 5003, 'a', 0}
     };
 
-    if( vec != NULL && pNextId != NULL && tam > 0 && tam <= 10)
+    if( vec != NULL && pNextId != NULL && tam > 0)
     {
-        for(int i=0; i < 8; i++)
+        for(int i=0; i < cant; i++)
         {
             vec[i] = bici[i];
             vec[i].id = *pNextId;
@@ -254,13 +253,14 @@ int buscarBiciId(eBici vec[], int tam, int id, int* pIndex)
         for(int i=0; i < tam; i++)
         {
 
-            if( vec[i].isEmpty==1  && vec[i].id == id)
+            if( vec[i].isEmpty==0  && vec[i].id == id)
             {
                 *pIndex = i;
+                todoOk = 1;
                 break;
             }
         }
-        todoOk = 1;
+
     }
     return todoOk;
 }
@@ -278,9 +278,8 @@ int modificarBici(eBici vec[], int tam, eColor color[], eMarca marca[], int tamC
 
     if(vec != NULL && marca != NULL && color != NULL && tam > 0 && tamMarca > 0 && tamColor > 0 && tipos != NULL && tamTipos > 0 )
     {
-        system("cls");
-        printf("\n------------------ Modificar Bici --------------\n");
-        printf("--------------------------------------------------\n");
+        printf("\n----------------------- Modificar Bici ------------------------\n");
+        printf("---------------------------------------------------------------");
 
         do
         {
@@ -302,6 +301,7 @@ int modificarBici(eBici vec[], int tam, eColor color[], eMarca marca[], int tamC
 				}
 				else
 				{
+					printf("\n");
 					mostrarBici(vec[indice], marca, color, tamColor, tamMarca, tipos, tamTipos);
 
 						switch(subMenu())
@@ -367,16 +367,16 @@ int bajaBici(eBici vec[], eColor color[],eMarca marca[],int tam,int tamColor,int
     char confirma;
     if( vec != NULL && color != NULL && marca != NULL && tam > 0 && tamColor > 0 && tamMarca > 0 && tipos != NULL && tamTipos > 0 )
     {
-        system("cls");
-        printf("       *** Baja Bici ***      \n");
-        printf("----------------------------------\n");
+        printf("------------------------- Baja Bici --------------------------\n");
+        printf("--------------------------------------------------------------");
 
         do{
 
         	listarBicis(vec, tam, marca, color, tamMarca, tamColor, tipos, tamTipos);
-			printf("Ingrese Id de la Bici que desea dar de baja, o 0 para salir: \n");
+			printf("\nIngrese Id de la Bici que desea dar de baja, o 0 para salir: ");
 			fflush(stdin);
 			scanf("%d", &id);
+			printf("\n");
 
 			if(id!=-1)
 			{
@@ -389,14 +389,14 @@ int bajaBici(eBici vec[], eColor color[],eMarca marca[],int tam,int tamColor,int
 					else
 					{
 						mostrarBici(vec[indice], marca, color, tamColor, tamMarca, tipos, tamTipos);
-						printf("Confirma baja?('s' para confirmar): \n");
+						printf("Confirma baja?('s' para confirmar): ");
 						fflush(stdin);
 						scanf("%c", &confirma);
 
 						if(confirma == 's' || confirma == 'S')
 						{
 							vec[indice].isEmpty = 2;
-							printf("Baja exitosa!!!\n");
+							printf("\n\n ***  Baja exitosa!!!  ***\n\n");
 							borrado = 1;
 						}
 						else
@@ -416,3 +416,4 @@ int bajaBici(eBici vec[], eColor color[],eMarca marca[],int tam,int tamColor,int
     }
     return borrado;
 }
+

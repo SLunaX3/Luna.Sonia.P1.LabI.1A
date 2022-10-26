@@ -16,7 +16,7 @@
 void mostrarMarca(eMarca unaMarca)
 {
 
-    printf("  %d    %10s\n",
+    printf("  %d    %7s\n",
            unaMarca.id,
            unaMarca.descripcion);
 }

@@ -20,6 +20,7 @@
 #include "Servicio.h"
 #include "Trabajo.h"
 #include "Fecha.h"
+#include "Informes.h"
 
 
 #define TAM_B 10
@@ -28,6 +29,7 @@
 #define TAM_C 5
 #define TAM_S 4
 #define TAM_T 10
+#define CANT_HARCODEO 8
 
 int main() {
 
@@ -36,6 +38,7 @@ int main() {
 
     int proxBici = 1000;
     int proxTrabajo = 3000;
+    int cantAHarcodear = CANT_HARCODEO;
 
     eBici lista[TAM_B];
 
@@ -68,7 +71,7 @@ int main() {
         {5004, "Rojo"}
     };
 
-    eServicio lavados[TAM_S]=
+    eServicio servicios[TAM_S]=
     {
         {20000, "Limpieza", 30},
         {20001, "Parche", 400},
@@ -76,6 +79,9 @@ int main() {
         {20003, "Cadena", 450}
     };
 
+  //  eTrabajo trabajos[TAM_T];
+
+// HARCODEO PARA PRUEBAS DE FUNCIONES
     eTrabajo trabajos[TAM_T]={
         {3000,1001,20001,{01,02,2022},0},
         {3001,1001,20000,{02,02,2022},0},
@@ -83,39 +89,43 @@ int main() {
         {3003,1003,20002,{04,02,2022},0},
         {3004,1003,20001,{05,02,2022},0},
         {3005,1002,20001,{06,02,2022},0},
-        {3006,1000,20001,{10,02,2022},0}
-
+        {3006,1000,20001,{10,02,2022},0},
+		{0,0,0,{0,0,0},1},
+		{0,0,0,{0,0,0},1},
+		{0,0,0,{0,0,0},1}
     };
 
 
     inicializarBici(lista,TAM_B);
 
-    hardcodearBicis(lista, TAM_B, &proxBici);
+    hardcodearBicis(lista, TAM_B, &proxBici, cantAHarcodear);
 
-    inicializarTrabajo(trabajos, TAM_T);
+   // inicializarTrabajo(trabajos, TAM_T);
 
     do
     {
         switch(menu())
         {
         case 1:
-             if(altaBici(lista, TAM_B, tipo, marca, color, lavados, TAM_TIPO, TAM_M, TAM_C, TAM_S, &proxBici))
+             if(altaBici(lista, TAM_B, tipo, marca, color, servicios, TAM_TIPO, TAM_M, TAM_C, TAM_S, &proxBici))
             {
-                printf("Bici cargada con exito!!!\n");
+                printf("\nBici cargada con exito!!!\n"
+                		"A continuación el Listado de Bicis para visualizar el Alta:\n");
+                listarBicis(lista, TAM_B, marca, color, TAM_M, TAM_C, tipo, TAM_TIPO);
             }
             else
             {
-                printf("No se pudo cargar la Bici\n");
+                printf("\nNo se pudo cargar la Bici\n");
             }
             break;
         case 2:
             if(modificarBici(lista, TAM_B, color, marca, TAM_C, TAM_M, tipo, TAM_TIPO))
            {
-               printf("Bici modifida con exito!!!\n");
+               printf("\nBici modifida con exito!!!\n");
            }
            else
            {
-               printf("No se realizó la modificación...\n");
+               printf("\nNo se realizó la modificación...\n");
 
            }
             break;
@@ -123,11 +133,11 @@ int main() {
         case 3:
             if(bajaBici(lista, color, marca, TAM_B, TAM_C, TAM_M, tipo, TAM_TIPO))
             {
-                printf("Bici borrada con exito!!!\n");
+                printf("\nBici borrada con exito!!!\n");
             }
             else
             {
-                printf("No se realizó la baja de Bici...\n");
+                printf("\nNo se realizó la baja de Bici...\n");
             }
 
             break;
@@ -145,30 +155,36 @@ int main() {
             break;
 
         case 7:
-        	mostrarServicios(lavados, TAM_S);
+        	mostrarServicios(servicios, TAM_S);
             break;
 
         case 8:
 
-        	if(altaTrabajo(trabajos, TAM_T, lista, TAM_B, lavados, marca, TAM_M, color, TAM_C, TAM_S, &proxTrabajo, tipo, TAM_TIPO))
+        	if(altaTrabajo(trabajos, TAM_T, lista, TAM_B, servicios, marca, TAM_M, color, TAM_C, TAM_S, &proxTrabajo, tipo, TAM_TIPO))
             {
-                printf("Trabajo cargado con exito!!!\n");
+                printf("\nTrabajo cargado con exito!!!\n");
             }
             else
             {
-                printf("No se pudo cargar el Trabajo\n");
+                printf("\nNo se pudo cargar el Trabajo\n");
             }
 
             break;
         case 9:
-        	listarTrabajos(trabajos, TAM_T, lavados, TAM_S);
+        	listarTrabajos(trabajos, TAM_T, servicios, TAM_S);
             break;
 
-        case 10:
+        case 10: //INFORMES
+        	//opcionInformes = menuInformes();
+        	informar(lista, TAM_B, color, marca, TAM_C, TAM_M, tipo, TAM_TIPO, trabajos, TAM_T, servicios, TAM_S);
+            break;
+
+        case 11:
             salir = 's';
             break;
 		default:
 			printf("--- Ingrese alguna de las opciones:");
+			break;
         }
 
 

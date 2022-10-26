@@ -8,6 +8,8 @@
 #ifndef TIPO_H_
 #define TIPO_H_
 
+
+
 typedef struct
 {
     int id;//comienza en 1000

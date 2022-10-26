@@ -16,7 +16,7 @@
 void mostrarTipo(eTipo unTipo)
 {
 
-    printf("  %d    %10s\n",
+    printf("  %d    %8s\n",
            unTipo.id,
            unTipo.descripcion);
 }
@@ -27,7 +27,7 @@ int mostrarTipos(eTipo tipos[], int tam)
 
 	if(tipos != NULL && tam > 0)
 	{
-		printf("\n ***   Tipos   ***\n");
+		printf("\n  ***   Tipos   ***\n");
 		printf("----------------------\n");
 		printf("   Id        Tipo\n");
 		printf("----------------------\n");

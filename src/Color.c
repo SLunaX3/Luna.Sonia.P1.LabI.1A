@@ -16,7 +16,7 @@
 void mostrarColor(eColor unColor)
 {
 
-    printf("  %d    %6s \n",
+    printf("  %d    %7s \n",
            unColor.id,
            unColor.nombreColor);
 }
@@ -28,7 +28,7 @@ int mostrarColores(eColor colores[], int tam)
 
 	if(colores != NULL && tam > 0)
 	{
-		printf(" ***   Colores   ***\n");
+		printf("\n ***   Colores   ***\n");
 		printf("----------------------\n");
 		printf("    Id      Color\n");
 		printf("----------------------\n");
@@ -43,7 +43,7 @@ int mostrarColores(eColor colores[], int tam)
 }
 
 
-int cargarColor(eColor colores[], int tam, int idColor , char nombreColor[])
+int cargarNombreColor(eColor colores[], int tam, int idColor , char nombreColor[])
 {
 	int todoOk = 0;
 	if(colores != NULL && tam > 0 && nombreColor != NULL)

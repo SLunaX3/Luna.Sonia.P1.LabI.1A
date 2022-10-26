@@ -17,12 +17,11 @@
 
 int menu()
 {
-    system("cls");
 
     int opcion;
 
-    printf("\n\n-----------------ABM-----------------\n");
-    printf("---Elija la operación a realizar-----\n");
+    printf("\n\n----------------ABM---------------\n");
+    printf("---Elija la operación a realizar---\n\n");
     printf("1. Alta Bicicleta\n");
     printf("2. Modificar Bicicleta \n");
     printf("3. Baja Bicicleta\n");
@@ -32,7 +31,8 @@ int menu()
     printf("7. Listar Servicios \n");
     printf("8. Alta Trabajo\n");
     printf("9. Listar Trabajos\n");
-    printf("10.Salir\n");
+    printf("10. INFORMES\n");
+    printf("11. Salir\n");
 
     printf("Ingrese opcion: ");
     fflush(stdin);
@@ -47,17 +47,15 @@ int menu()
 int subMenu()
 {
 
-    system("cls");
-
     int opcion = -1;
 
 	do{
-		printf("\n-----Elija la modificacion a realizar-----\n");
+		printf("\n-----Elija la modificacion a realizar-----\n\n");
 		printf("   1. Tipo\n");
-		printf("   2. Rodado \n");
-		printf("   3. Salir de la modificación.\n");
+		printf("   2. Material \n");
+		printf("   3. Salir de la modificación.\n\n");
 
-		printf("Ingrese opcion: \n");
+		printf("Ingrese opcion: ");
 		fflush(stdin);
 		scanf("%d", &opcion);
 
@@ -66,4 +64,6 @@ int subMenu()
 
     return opcion;
 }
+
+
 

@@ -52,7 +52,7 @@ int buscarFreeTrabajo(eTrabajo vec[], int tam, int* pIndex)
 }
 
 
-int altaTrabajo(eTrabajo vec[],  int tam_t, eBici lista[],int tam, eServicio lavados[],eMarca marca[],int tamMarca, eColor color[],int tamColor, int tamServicio, int* pNextId, eTipo tipos[], int tamTipos)
+int altaTrabajo(eTrabajo vec[],  int tam_t, eBici lista[],int tam, eServicio servicios[],eMarca marca[],int tamMarca, eColor color[],int tamColor, int tamServicio, int* pNextId, eTipo tipos[], int tamTipos)
 {
     int todoOk = 0;
     int indice;
@@ -61,11 +61,10 @@ int altaTrabajo(eTrabajo vec[],  int tam_t, eBici lista[],int tam, eServicio lav
     eFecha fecha;
     int idBici;
 
-    if( vec != NULL && pNextId != NULL && tam > 0 && marca != NULL && tamMarca > 0 && color != NULL && tamColor > 0 && lavados != NULL && tamServicio > 0 && tipos != NULL && tamTipos > 0)
+    if( vec != NULL && pNextId != NULL && tam > 0 && marca != NULL && tamMarca > 0 && color != NULL && tamColor > 0 && servicios != NULL && tamServicio > 0 && tipos != NULL && tamTipos > 0)
     {
-        system("cls");
-        printf("\n             *** Alta Trabajo ***             \n");
-        printf("---------------------------------------------\n\n");
+        printf("---------------------- Alta Trabajo ---------------------------\n");
+        printf("---------------------------------------------------------------");
         buscarFreeTrabajo(vec, tam_t, &indice);
 
         if(indice == -1)
@@ -89,7 +88,7 @@ int altaTrabajo(eTrabajo vec[],  int tam_t, eBici lista[],int tam, eServicio lav
              }
             nuevoT.idBicicleta = idBici;
 
-             mostrarServicios(lavados,tamServicio);
+             mostrarServicios(servicios,tamServicio);
              printf("Ingrese el Id del servicio: ");
              fflush(stdin);
              scanf("%d", &nuevoT.idServicio);
@@ -111,7 +110,7 @@ int altaTrabajo(eTrabajo vec[],  int tam_t, eBici lista[],int tam, eServicio lav
              {
                  printf("ERROR. Ingrese una fecha válida (dd/mm/aaaa): \n");
                  fflush(stdin);
-                 scanf("%02d/%02d/%4d", &fecha.dia,&fecha.mes,&fecha.anio);
+                 scanf("%d/%d/%d", &fecha.dia,&fecha.mes,&fecha.anio);
              }
 
             nuevoT.fecha = fecha;
@@ -129,11 +128,11 @@ int altaTrabajo(eTrabajo vec[],  int tam_t, eBici lista[],int tam, eServicio lav
 }
 
 
-void mostrarTrabajo(eTrabajo unTrabajo, eServicio lavados[], int tamServicio)
+void mostrarTrabajo(eTrabajo unTrabajo, eServicio servicios[], int tamServicio)
 {
     char descServicio[26];
 
-    cargarServicio(lavados, tamServicio, unTrabajo.idServicio, descServicio);
+    cargarServicio(servicios, tamServicio, unTrabajo.idServicio, descServicio);
 
     printf("  %d       %d       %6s   %02d/%02d/%4d    \n",
            unTrabajo.id,
@@ -151,10 +150,10 @@ int listarTrabajos(eTrabajo trabajos[],int tam, eServicio servicios[],int tamSer
 
     if(trabajos != NULL && tam > 0)
     {
-        system("cls");
-        printf("\n       *** Listado de Trabajos ***      \n");
-        printf("   IdTrabajo   idBici    Servicio   Fecha\n");
-        printf("---------------------------------------------\n");
+        printf("\n        *** Listado de Trabajos ***      \n");
+        printf("----------------------------------------------\n");
+        printf("IdTrabajo   idBici    Servicio   Fecha\n");
+        printf("----------------------------------------------\n");
         for(int i = 0; i < tam; i++)
         {
             if(trabajos[i].isEmpty == 0)
@@ -172,4 +171,5 @@ int listarTrabajos(eTrabajo trabajos[],int tam, eServicio servicios[],int tamSer
     }
     return todoOk;
 }
+
 
