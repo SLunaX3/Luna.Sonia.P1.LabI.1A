@@ -19,11 +19,11 @@ typedef struct
 
 void mostrarServicio(eServicio unServicio);
 
-int mostrarServicios(eServicio lavados[], int tamServicio);
+int mostrarServicios(eServicio servicios[], int tamServicio);
 
-int cargarServicio(eServicio lavados[], int tam, int idServicio , char descServicio[]);
+int cargarServicio(eServicio servicios[], int tam, int idServicio , char descServicio[]);
 
-int cargarPrecio(eServicio lavados[],int tam, int idServicio, int* precio);
+int cargarPrecio(eServicio servicios[],int tam, int idServicio, int* precio);
 
 
 #endif /* SERVICIO_H_ */

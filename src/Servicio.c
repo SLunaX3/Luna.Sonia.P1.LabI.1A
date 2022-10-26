@@ -49,16 +49,16 @@ int mostrarServicios(eServicio servicios[], int tamServicio)
 	return todoOk;
 }
 
-int cargarServicio(eServicio lavados[], int tam, int idServicio , char descServicio[])
+int cargarServicio(eServicio servicios[], int tam, int idServicio , char descServicio[])
 {
 	int todoOk = 0;
-	if(lavados != NULL && tam > 0 && descServicio != NULL)
+	if(servicios != NULL && tam > 0 && descServicio != NULL)
 	{
 		for(int i = 0; i < tam; i++)
 		{
-			if(lavados[i].id == idServicio)
+			if(servicios[i].id == idServicio)
 			{
-				strcpy(descServicio, lavados[i].descripcion);
+				strcpy(descServicio, servicios[i].descripcion);
 				todoOk = 1;
 				break;
 			}
@@ -67,17 +67,17 @@ int cargarServicio(eServicio lavados[], int tam, int idServicio , char descServi
 	return todoOk;
 }
 
-int cargarPrecio(eServicio lavados[],int tam, int idServicio, int* precio)
+int cargarPrecio(eServicio servicios[],int tam, int idServicio, int* precio)
 {
     int todoOk = 0;
 
-	if(lavados != NULL && tam > 0 && precio != NULL)
+	if(servicios != NULL && tam > 0 && precio != NULL)
 	{
 		for(int i = 0; i < tam; i++)
 		{
-			if(lavados[i].id == idServicio)
+			if(servicios[i].id == idServicio)
 			{
-				*precio = lavados[i].precio;
+				*precio = servicios[i].precio;
 				break;
 			}
 		}

@@ -107,7 +107,7 @@ int main() {
         switch(menu())
         {
         case 1:
-             if(altaBici(lista, TAM_B, tipo, marca, color, servicios, TAM_TIPO, TAM_M, TAM_C, TAM_S, &proxBici))
+             if(altaBici(lista, TAM_B, tipo, marca, color, TAM_TIPO, TAM_M, TAM_C, &proxBici))
             {
                 printf("\nBici cargada con exito!!!\n"
                 		"A continuación el Listado de Bicis para visualizar el Alta:\n");

@@ -103,17 +103,6 @@ void informar( eBici vec[], int tam, eColor color[], eMarca marca[], int tamColo
 
 
 
-/// @brief
-///
-/// @param lista
-/// @param tam
-/// @param marcas
-/// @param colores
-/// @param tam_colores
-/// @param tam_marca
-/// @param tipos
-/// @param tam_tipo
-/// @return
 int mostrarBiciColorSeleccionado(eBici lista[],int tam,eMarca marcas[], eColor colores[], int tam_colores,int tam_marca, eTipo tipos[], int tam_tipo)
 {
     int todoOk=0;

@@ -20,6 +20,8 @@
 #include "Servicio.h"
 #include "Trabajo.h"
 
+
+
 int inicializarBici(eBici vec[], int tam)
 {
     int todoOk = 0;
@@ -60,14 +62,14 @@ int buscarFree(eBici vec[], int tam, int* pIndex)
 
 
 
-int altaBici(eBici vec[], int tam, eTipo tipo[], eMarca marca[], eColor color[], eServicio lavados[], int tamTipo, int tamMarca, int tamColor, int tamServicio, int* pNextBici)
+int altaBici(eBici vec[], int tam, eTipo tipo[], eMarca marca[], eColor color[], int tamTipo, int tamMarca, int tamColor, int* pNextBici)
 {
     int todoOk = 0;
     int indice;
     eBici nuevaBici;
 
 
-    if( vec != NULL && pNextBici != NULL && tam > 0 && tipo != NULL && marca != NULL && tamTipo > 0 && tamMarca > 0 && color != NULL && tamColor > 0 && lavados != NULL && tamServicio > 0)
+    if( vec != NULL && pNextBici != NULL && tam > 0 && tipo != NULL && marca != NULL && tamTipo > 0 && tamMarca > 0 && color != NULL && tamColor > 0)
     {
         printf("\n-------------- Alta Bici ---------------\n");
         printf("----------------------------------------\n");
